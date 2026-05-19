@@ -90,6 +90,20 @@ def demander_lettre(lettres_jouees):
             lettre_valide = True
     return lettre
 
+def donner_indice(mot, lettres_jouees):
+    """BONUS : retourne une lettre de l'alphabet qui n'est PAS dans le mot
+    et qui n'a pas deja ete jouee. Retourne None si aucune lettre possible."""
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    mot_sans_accent = enlever_accents(mot)
+    lettres_possibles = []
+    for lettre in alphabet:
+        if lettre not in mot_sans_accent and lettre not in lettres_jouees:
+            lettres_possibles.append(lettre)
+    if len(lettres_possibles) == 0:
+        return None
+    return random.choice(lettres_possibles)
+
+
 def jouer_partie(liste_mots):
     """Joue une partie complete du pendu. Retourne True si le joueur gagne,
     False s'il perd. C'est la fonction qui contient la boucle while."""
@@ -106,6 +120,20 @@ def jouer_partie(liste_mots):
         # 1. Afficher l'etat actuel du mot
         print("Mot :", afficher_etat(mot, lettres_trouvees))
         print("Chances restantes :", chances)
+
+        # BONUS : proposer un indice s'il reste au moins une chance
+        veut_indice = input("Voulez-vous un indice ? (o/n) : ")
+        if veut_indice.lower() == "o":
+            indice = donner_indice(mot, lettres_jouees)
+            if indice is None:
+                print("Aucun indice disponible.")
+            else:
+                print("Indice : la lettre '" + indice + "' n'est pas dans le mot.")
+                lettres_jouees.append(indice)
+                chances = chances - 1  # l'indice coute une chance
+                # Si l'indice fait tomber les chances a zero, on arrete
+                if chances == 0:
+                    break
  
         # 2. Demander une lettre a l'utilisateur
         lettre = demander_lettre(lettres_jouees)
@@ -131,6 +159,12 @@ def jouer_partie(liste_mots):
     print("Vous avez perdu. Le mot etait :", mot)
     return False
 
+def rejouer():
+    """Demande a l'utilisateur s'il veut recommencer une partie.
+    Retourne True pour rejouer, False pour quitter."""
+    reponse = input("\nVoulez-vous rejouer ? (o/n) : ")
+    return reponse.lower() == "o"
+
 def main():
     """Point d'entree du programme : charge les mots du fichier
     et enchaine les parties tant que le joueur veut continuer."""
@@ -147,6 +181,8 @@ def main():
     continuer = True
     while continuer:
         jouer_partie(mots)
+        continuer = rejouer()
+
  
     print("\nMerci d'avoir joue. A bientot !")
 
