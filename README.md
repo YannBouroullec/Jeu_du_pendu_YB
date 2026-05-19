@@ -7,7 +7,7 @@ au hasard et on doit le deviner lettre par lettre. On a droit a 6 erreurs.
 
 ## Les fichiers
 
-- `pendu.py` : le jeu. Tout est ecrit sous forme de fonctions, comme demande
+- `jeu_du_pendu.py` : le jeu. Tout est ecrit sous forme de fonctions, comme demande
   dans la consigne.
 - `mots_pendu.txt` : la liste des mots, un par ligne. C'est dans ce fichier
   que le programme va piocher.
