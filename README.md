@@ -19,7 +19,7 @@ Il faut Python 3. On garde `pendu.py` et `mots_pendu.txt` dans le meme
 dossier, puis on lance dans un terminal :
 
 ```
-python pendu.py
+python jeu_du_pendu.py
 ```
 
 Ensuite il suffit de suivre ce qui s'affiche. A chaque tour le jeu montre le
