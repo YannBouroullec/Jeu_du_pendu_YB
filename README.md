@@ -15,7 +15,7 @@ au hasard et on doit le deviner lettre par lettre. On a droit a 6 erreurs.
 
 ## Pour jouer
 
-Il faut Python 3. On garde `pendu.py` et `mots_pendu.txt` dans le meme
+Il faut Python 3. On garde `jeu_du_pendu.py` et `mots_pendu.txt` dans le meme
 dossier, puis on lance dans un terminal :
 
 ```
